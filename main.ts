@@ -3,13 +3,15 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     game.over(true, effects.hearts)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
+    mySprite.destroy()
+    game.over(false)
 })
+let mySprite: Sprite = null
 game.splash("Swordo", "Welcome to the Game. Press \"A\" to continue")
-game.splash("Reach By 7.5 seconds without touching any obstacles")
+game.splash("Reach the mushroom by 7.5 seconds without touching any trees")
 game.splash("You will earn 10 points after reaching.")
 tiles.setTilemap(tilemap`level1`)
-let mySprite = sprites.create(img`
+mySprite = sprites.create(img`
     .......ff...............
     ....ffff2ff.............
     ..ffeeeef2ff............
@@ -212,4 +214,3 @@ let Touch_to_gain_Points = sprites.create(img`
 Touch_to_gain_Points.setPosition(740, 50)
 info.startCountdown(7.5)
 info.setScore(0)
-info.setLife(3)
